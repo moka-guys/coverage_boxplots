@@ -15,7 +15,7 @@ covtsubset <- filter(covtidy, Gene=="COL9A2" | Gene=="MATN3" | Gene=="SLC26A2" |
 ggplot(covtsubset, aes(x="", y=above20X)) +
   geom_boxplot(aes(group = Gene)) +
   facet_wrap(~ Gene, ncol = 1)
-ggsave("Coverage170210.pdf", width=2, height=20, limitsize=FALSE)
+ggsave("170210.pdf", width=2, height=20, limitsize=FALSE)
 
 # example of plotting box plots for a range of gene symbols
 covtsubset <- filter(covtidy, Gene=="E" | str_detect(Gene, "^E[0-9].*") | str_detect(Gene, "^E[A-N].*") )
