@@ -7,7 +7,7 @@ library("stringr")
 # import coverage data
 covtidy <- read_tsv("covtidy.txt")
 
-# check the dataframe,  should return: A tibble: 2,551,722 × 3
+# check the dataframe - for 100 exomes, should return: A tibble: 2,551,722 × 3
 covtidy
 
 # examples of plotting box plots for a few genes
