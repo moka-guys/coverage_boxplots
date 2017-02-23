@@ -1,6 +1,5 @@
 #install.packages("tidyverse")
 #install.packages("stringr")
-#install.packages("shiny")
 
 
 library("shiny")
