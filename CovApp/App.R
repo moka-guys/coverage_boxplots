@@ -1,4 +1,9 @@
-library(shiny)
+#install.packages("tidyverse")
+#install.packages("stringr")
+#install.packages("shiny")
+
+
+library("shiny")
 library("tidyverse")
 library("stringr")
 
