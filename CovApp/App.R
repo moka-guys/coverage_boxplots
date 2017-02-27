@@ -25,7 +25,7 @@ ui <-pageWithSidebar(
 # Server: Calaculates coverage boxplot for gene specified by the user
 server <- function(input, output){output$caption <- renderText(input$genename)
   output$boxplot <- renderPlot({covtsubset <- filter(covtidy, Gene == input$genename) 
-  p <- ggplot(covtsubset, aes(x="", y=above20X)) + geom_boxplot(aes(group = Gene)) + coord_cartesian(ylim = c(0, 100)) 
+  p <- ggplot(covtsubset, aes(x="", y="Horizontal coverage, percentage of bases above20X")) + geom_boxplot(aes(group = Gene)) + coord_cartesian(ylim = c(0, 100)) 
   print(p)})}
 
 shinyApp(ui = ui, server = server)
