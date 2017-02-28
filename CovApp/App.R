@@ -20,7 +20,7 @@ ui <-pageWithSidebar(
   sidebarPanel(selectizeInput(inputId = "genename", label = "Enter HGNC gene symbol", choices = genelist, selected = "FXYD3", multiple = FALSE, 
                              options = list(placeholder ='Gene Symbol'))),
   # main pannel will dipaly selected gene and associated coverage box plot (calculated in the server section)
-  mainPanel(h3("% of bases above 20X", align = "center"), h4(textOutput("caption"), align = "center"), plotOutput(outputId = "boxplot"), h6("Box plot shows 1st-3rd quartile, with the median value represented by a horizontal line. Outliers are defined as data points less than or greater than 1.5 times the interquartile range beyond the 1st and 3rd quartiles respectively, and are represented by dots. Whiskers show the range of inliers. N = 100 exomes (Agilent SureSelect Clinical Research Exome).")))
+  mainPanel(h3("% of bases above 20X", align = "center"), h4(textOutput("caption"), align = "center"), plotOutput(outputId = "boxplot"), h6("Box plot shows 1st-3rd quartile, with the median value represented by a horizontal line. Outliers are defined as data points less than or greater than 1.5 times the interquartile range beyond the 1st and 3rd quartiles respectively, and are represented by dots. Whiskers show the range of inliers. Coverage calculated for RefSeq exonic bases +/- 5bp. N = 100 exomes (Agilent SureSelect Clinical Research Exome).")))
 
 # Server: Calaculates coverage boxplot for gene specified by the user
 server <- function(input, output){output$caption <- renderText(input$genename)
