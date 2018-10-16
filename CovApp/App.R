@@ -8,7 +8,7 @@ library("stringr")
 
 # load files, files must be in the same directory as App.R script
 # List of genes for user selection
-genelist <- read_tsv("CovGeneSymbFeb2017.txt")
+genelist <- read_tsv("CovGeneSymbOct2018.txt")
 # coverage data
 covtidy <- read_tsv("covtidy.txt")
 
