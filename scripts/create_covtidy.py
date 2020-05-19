@@ -66,7 +66,7 @@ def main():
     covtidy_genes = pd.Series(covtidy.Gene.unique()).sort_values()
     # Get median percentage above20X for each gene. This is covtidy_median.txt, the dataset for
     # mokadatabase.NGSWESCoveragebyGene
-    covtidy_median = covtidy.groupby('Gene').median().reset_index()
+    covtidy_median = covtidy.groupby('Gene').median().reset_index().round(2)
 
     # Write output files to current working directory 
     covtidy.to_csv(
