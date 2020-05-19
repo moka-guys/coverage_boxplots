@@ -22,7 +22,7 @@ def parsed_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--gene-entrez', '-s',
-        help="A file containg HGNC symbols mapped to Entrez Gene IDs. Available from genenames.org",
+        help="A file linking HGNC symbols to Entrez Gene IDs. Available from moka.GenesHGNC_current or genenames.org",
         required=True)
     parser.add_argument('--chanjo-files','-f', required=True, nargs='+')
     parsed = parser.parse_args()
