@@ -26,7 +26,7 @@ ui <-pageWithSidebar(
     h3("Gene Coverage Boxplot:", align = "center"),
     h4(textOutput("caption"), align = "center"),
     plotOutput(outputId = "boxplot"),
-    p("Boxplot of in-house WES gene coverage above 20X (N=63; RefSeq exons +/- 5bp).", style="font-weight:600;text-align:center"),
+    p("In-house WES gene coverage above 20X (N=63; RefSeq exons +/- 5bp).", style="font-weight:600;text-align:center"),
     p("Disclaimer: This plot shows the first 63 samples processed using the Twist Human Core Exome kit. Plots will be updated as more samples become available.", style="color:red;text-align:center"),
     p("Interpreting the boxplot: The horizontal line represents the median covergae. The white box contains the 1st to 3rd quartile. Outliers are shown as dots and are defined as any data point (sample gene coverage) less than or greater than 1.5 times interquartile range. Whiskers show the range of inliers."),
     )
