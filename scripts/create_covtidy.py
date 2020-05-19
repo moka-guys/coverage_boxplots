@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """create_covtidy.py
 
-Create covtidy.txt, a file of gene coverage per sample built from chanjo_txt files.
-Requires a file containg HGNC symbols mapped to Entrez Gene IDs which is available from genenames.org
-  or from the moka.GenesHGNC_current table.
+Create data for covearge app from chanjo output files. Requires a file mapping HGNC symbols mapped
+to Entrez Gene IDs which is available from genenames.org or from the moka.GenesHGNC_current table.
 
 Example:
 ./create_covtidy.py -s genes_entrez.txt -f *.chanjo_txt
 Outputs:
-    covtidy.txt covtidy_genes.txt
+    covtidy.txt - Percentage coverage above 20X for each gene in each sample. Used in CovApp.
+    covtidy_genes.txt - A list of unique genes in all samples. Used in CovApp.
+    covtidy_median.txt - The median percentage coverage above 20X for each gene across all samples. Used to update moka table NGSWESCoverageByGene.
 """ 
 
 # Read CLI
@@ -59,10 +60,13 @@ def main():
     cfiles_clean = ( chanjo_transformer(cfile) for cfile in cfiles )
     cfiles_concat = pd.concat(cfiles_clean, axis=0, ignore_index=True)
 
-    # Convert entrez ids to gene symbols
+    # Convert entrez ids to gene symbols. This is covtidy.txt, the dataset for CovApp
     covtidy = pd.merge(cfiles_concat, gene_entrez, how='inner', on='entrez')
-    # Get unique genes for outputs
-    covtidy_genes = pd.Series(covtidy.Gene.unique())
+    # Get unique genes for outputs. This is covtidy_genes.txt, the second dataset for CovApp
+    covtidy_genes = pd.Series(covtidy.Gene.unique()).sort_values()
+    # Get median percentage above20X for each gene. This is covtidy_median.txt, the dataset for
+    # mokadatabase.NGSWESCoveragebyGene
+    covtidy_median = covtidy.groupby('Gene').median().reset_index()
 
     # Write output files to current working directory 
     covtidy.to_csv(
@@ -73,6 +77,7 @@ def main():
         index=False
     )
     covtidy_genes.to_csv('covtidy_genes.txt', header=False, index=False)
+    covtidy_median[['Gene','above20X']].to_csv('covtidy_median.txt', header=False, index=False)
 
 if __name__ == "__main__":
     main()
