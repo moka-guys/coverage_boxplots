@@ -42,7 +42,7 @@ server <- function(input, output){
         # Get the median value for the gene from covtidy_median
         median_value = covtidy_median %>% filter(genes==input$genename) %>% select(median) %>% as.character()
         # Wrap the median around a string for the user interface. E.g. 'Median 100% above 20X'
-        output_string = paste("Median ", paste(median_value, "%", sep=""), "of bases above 20X coverage", sep=" ")
+        output_string = paste("Median ", paste(median_value, "%", sep=""), "of bases covered above 20X", sep=" ")
         # Return the output string  
         return(output_string)
       }
